@@ -4,7 +4,7 @@ import CtaBanner from '../components/CtaBanner.jsx'
 import Faq from '../components/Faq.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
-import Logo from '../Components/Logo.jsx'
+import Logo from '../components/Logo.jsx'
 import {BatteryCharging, Brush, ChessQueen, Medal, Puzzle, SmartphoneCharging, Users} from 'lucide-react'
 
 const audiences = ['Startups', 'Enterprise leaders', 'Media & Publishers', 'Social Good']

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import PageHero from '../components/PageHero.jsx'
 import ContactForm from '../components/ContactForm.jsx'
-import Logo from '../Components/Logo.jsx'
+import Logo from '../components/Logo.jsx'
 
 const steps = [
   { 
