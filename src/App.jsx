@@ -9,7 +9,7 @@ import Careers from './pages/Careers.jsx'
 import Contact from './pages/Contact.jsx'
 import Work from './pages/Work.jsx'
 
-export default function App() {
+const App = () => {
   return (
     <div className="min-h-screen flex flex-col bg-ink-800">
       <Navbar />
@@ -28,3 +28,4 @@ export default function App() {
     </div>
   )
 }
+export default App
