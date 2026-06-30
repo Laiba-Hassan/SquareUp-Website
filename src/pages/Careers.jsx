@@ -103,66 +103,104 @@ const openings = [
   },
 ]
 
-export default function Careers() {
+const Careers = () => {
   return (
+    <div className="max-w-8xl mx-auto px-4 md:px-20">
+    <div className="border-x border-ink-600 min-h-screen">
     <>
       <PageHero
         title="Join Our Team at SquareUp"
         subtitle="Unlock your potential and join our team of innovators and problem solvers."
+        image="HomeImages/Background.jpeg"
       />
 
-      <section className="max-w-6xl mx-auto px-5 md:px-8 py-16">
-        <h2 className="text-2xl md:text-3xl font-medium text-white mb-4">Welcome to SquareUp, where talent meets opportunity!</h2>
-        <p className="text-white/50 max-w-2xl text-sm leading-relaxed mb-6">
-          At SquareUp, we believe that the success of our agency lies in the talent, passion, and dedication of our
-          team members. We are a digital product agency that thrives on innovation, creativity, and collaboration.
-          If you're ready to make a difference and contribute to cutting-edge projects, we invite you to explore
-          career opportunities with us.
+      <section className="max-w-8xl mx-auto px-4 md:px-10 py-10 md:py-16">
+        <h2 className="text-2xl md:text-4xl font-semibold text-white mb-4">Welcome to SquareUp, where talent meets opportunity!</h2> 
+        <p className="text-white/80 max-w-6xl text-md md:text-md mb-6">
+          At SquareUp, we believe that the success of our agency lies in the talent, passion, and dedication of our team members. We are a digital product agency that thrives on innovation, creativity, and collaboration. If you're ready to make a difference and contribute to cutting-edge projects, invite you to explore career opportunities with us.
         </p>
-        <span className="inline-block bg-ink-800 text-white/70 text-sm px-4 py-2 rounded-md">Why Work at SquareUp?</span>
+        <span className="inline-block bg-ink-600 text-white text-sm md:text-md px-5 py-3 rounded-md mt-8">Why Work at SquareUp?</span>
       </section>
 
-      <section className="max-w-6xl mx-auto px-5 md:px-8 pb-16 grid md:grid-cols-2 border-t border-l border-white/10">
+      <section className="max-w-8xl mx-auto pb-16 grid grid-cols-1 md:grid-cols-2 border-t border-l border-white/10">
         {perks.map((p) => (
-          <div key={p.title} className="border-r border-b border-white/10 p-8">
-            <h3 className="text-lime-200 font-medium text-lg mb-3 border-b border-white/10 pb-3">{p.title}</h3>
-            <p className="text-white/50 text-sm leading-relaxed">{p.text}</p>
+          <div key={p.title} className="border-r border-b border-white/10 p-5 md:p-8">
+            <h3 className="text-lime-200 font-medium text-2xl md:text-4xl mb-3 border-b border-white/10 pb-6 py-8 md:pb-10 md:py-16">{p.title}</h3>
+            <p className="text-white/50 text-sm md:text-lg leading-relaxed">{p.text}</p>
           </div>
         ))}
       </section>
 
-      <section className="bg-ink-900 bg-noise border-y border-white/5 py-16">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-medium text-white mb-3">Current Openings</h2>
-          <p className="text-white/50 max-w-2xl text-sm mb-12">
-            We are always on the lookout for talented individuals who are passionate about creating exceptional
-            digital experiences. Whether you're a designer, engineer, project manager, or have skills that align
-            with our agency's mission, we encourage you to explore our open positions.
-          </p>
+      <section className="border-x border-ink-600">
+  <div className="max-w-8xl mx-auto">
 
-          {openings.map((group) => (
-            <div key={group.cat} className="mb-12">
-              <h3 className="text-white/50 text-lg font-medium mb-5">{group.cat}</h3>
-              <div className="grid md:grid-cols-3 gap-5">
-                {group.jobs.map((j) => (
-                  <div key={j.title} className="bg-ink-800 rounded-2xl p-6 flex flex-col">
-                    <div className="w-12 h-12 rounded-md bg-gradient-to-b from-ink-600 to-ink-800 text-lime-400 flex items-center justify-center text-2xl mb-5">
-                      <i className={j.icon}></i>
-                      </div>
-                    <h4 className="text-white font-semibold mb-3">{j.title}</h4>
-                    <p className="text-white/50 text-sm leading-relaxed mb-6 flex-1">{j.text}</p>
-                    <button className="bg-ink-700 text-white/80 border border-white/15 text-sm rounded-md py-2.5 hover:border-white hover:text-white transition-colors">
-                      Apply Now
-                    </button>
-                  </div>
-                ))}
+    <div className="px-4 md:px-8 py-4 md:py-6 border-b border-ink-600">
+      <h2 className="text-2xl md:text-4xl font-semibold text-white mb-4 md:mb-6">
+        Current Openings
+      </h2>
+
+      <p className="text-white/50 max-w-6xl text-sm md:text-md">
+        We are always on the lookout for talented individuals who are passionate
+        about creating exceptional digital experiences. Whether you're a
+        designer, engineer, project manager, or have skills that align with our
+        agency's mission, we encourage you to explore our open positions.
+      </p>
+    </div>
+
+    {openings.map((group) => (
+      <div
+        key={group.cat}
+        className="border-b border-ink-600 last:border-b-0"
+      >
+
+        <div className="px-4 md:px-10 py-5 md:py-8 border-b border-ink-600">
+          <h3 className="text-xl md:text-2xl text-white font-medium">
+            {group.cat}
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 " >
+
+          {group.jobs.map((j, index) => (
+            <div
+              key={j.title}
+              className={`p-5 md:p-10 flex flex-col ${
+                index !== group.jobs.length - 1
+                  ? "border-b md:border-b-0 md:border-r border-ink-600"
+                  : ""
+              }`}
+            >
+
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg bg-gradient-to-b from-ink-600 to-ink-800 flex items-center justify-center text-lime-400 text-2xl md:text-3xl mb-8 md:mb-8">
+                <i className={j.icon}></i>
               </div>
+
+              <h4 className="text-white text-xl md:text-2xl font-light mb-5 md:mb-5">
+                {j.title}
+              </h4>
+
+              <p className="text-white/60 text-sm md:text-base leading-7 md:leading-8 flex-1 mb-8 md:mb-10">
+                {j.text}
+              </p>
+
+              <button className="w-full py-4 rounded-lg text-white border border-ink-700 bg-ink-700 hover:border-white transition">
+                Apply Now
+              </button>
+
             </div>
           ))}
+
         </div>
-      </section>
+      </div>
+    ))}
+
+  </div>
+</section>
 
       <CtaBanner />
     </>
+    </div>
+    </div>
   )
 }
+export default Careers

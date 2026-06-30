@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const contactReasons = [
   "Web Design",
@@ -21,84 +21,62 @@ const ContactForm = () => {
   const pct = ((budget - 1000) / (5000 - 1000)) * 100;
 
   return (
-    <div className="max-w-2xl mx-auto space-y-3.5">
+    <div className="max-w-4xl mx-auto space-y-3.5 py-10 md:py-20 px-4 md:px-20 border-y border-ink-600">
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-        <div className="bg-[#181818] border border-white/[0.06] rounded-xl p-5">
-          <label className="text-white text-[13px] font-semibold block mb-3">
+        <div className="bg-ink-700 border border-ink-600 rounded-lg p-5">
+          <label className="text-white text-lg font-light block mb-3">
             Full Name
           </label>
           <input
             type="text"
             placeholder="Type here"
-            className="w-full bg-transparent border-b border-white/[0.1] text-white text-[13px] placeholder-[#444] pb-2 outline-none focus:border-[#c5f135] transition-colors"
+            className="w-full bg-transparent border-b border-white/[0.1] text-white text-md placeholder-[#444] pb-2 outline-none"
           />
         </div>
 
-        <div className="bg-[#181818] border border-white/[0.06] rounded-xl p-5">
-          <label className="text-white text-[13px] font-semibold block mb-3">
+        <div className="bg-ink-700 border border-ink-600 rounded-lg p-5">
+          <label className="text-white text-lg font-light block mb-3">
             Email
           </label>
           <input
             type="email"
             placeholder="Type here"
-            className="w-full bg-transparent border-b border-white/[0.1] text-white text-[13px] placeholder-[#444] pb-2 outline-none focus:border-[#c5f135] transition-colors"
+            className="w-full bg-transparent border-b border-white/[0.1] text-white text-md placeholder-[#444] pb-2 outline-none focus:border-[#c5f135] transition-colors"
           />
         </div>
       </div>
 
-      <div className="bg-[#181818] border border-white/[0.06] rounded-xl p-5">
-        <label className="text-white text-[13px] font-semibold block mb-4">
+      <div className="bg-ink-700 border border-ink-600 rounded-lg p-5">
+        <label className="text-white text-lg font-light block mb-6">
           Why are you contacting us?
         </label>
 
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {contactReasons.map((r) => (
             <label
               key={r}
-              className={`flex items-center gap-2.5 border rounded-lg px-3.5 py-2.5 cursor-pointer transition-all text-[13px] ${
-                selected.includes(r)
-                  ? "border-[#c5f135]/40 text-white bg-[#c5f135]/5"
-                  : "border-white/[0.08] text-[#888]"
-              }`}
+              onClick={() => toggleReason(r)}
+              className="flex items-center gap-3 px-3 py-2.5 cursor-pointer"
             >
-              <div
-                className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 transition-all ${
-                  selected.includes(r)
-                    ? "bg-[#c5f135] border-[#c5f135]"
-                    : "border-white/20"
-                }`}
-                onClick={() => toggleReason(r)}
-              >
+              <div className="w-7 h-7 rounded border border-ink-700 flex items-center justify-center flex-shrink-0 bg-ink-600">
                 {selected.includes(r) && (
-                  <svg
-                    width="9"
-                    height="7"
-                    viewBox="0 0 9 7"
-                    fill="none"
-                  >
-                    <path
-                      d="M1 3.5L3.5 6L8 1"
-                      stroke="#0d0d0d"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <i className="ri-check-line text-[#c5f135] text-xl"></i>
                 )}
               </div>
 
-              {r}
+              <span className="text-white/80 text-md">{r}</span>
             </label>
           ))}
         </div>
       </div>
 
-      <div className="bg-[#181818] border border-white/[0.06] rounded-xl p-5">
-        <label className="text-white text-[13px] font-semibold block mb-1">
+      <div className="bg-ink-700 border border-ink-600 rounded-xl p-5">
+        <label className="text-white text-lg font-light block mb-1">
           Your Budget
         </label>
 
-        <p className="text-[#555] text-xs mb-4">
+        <p className="text-[#555] text-md mb-3 md:text-sm">
           Slide to indicate your budget range
         </p>
 
@@ -115,33 +93,36 @@ const ContactForm = () => {
         />
 
         <div className="flex justify-between mt-2">
-          <span className="text-[#555] text-xs">$1000</span>
-          <span className="text-[#c5f135] text-xs font-semibold">
+          <span className="text-white/80 text-sm">$1000</span>
+          <span className="text-[#c5f135] text-sm font-light">
             ${budget.toLocaleString()}
           </span>
-          <span className="text-[#555] text-xs">$5000</span>
+          <span className="text-white/80 text-sm">$5000</span>
         </div>
       </div>
 
-      <div className="bg-[#181818] border border-white/[0.06] rounded-xl p-5">
-        <label className="text-white text-[13px] font-semibold block mb-3">
+      <div className="bg-ink-700 border border-ink-600 rounded-xl p-5">
+        <label className="text-white text-lg font-light block mb-6">
           Your Message
         </label>
 
         <textarea
           placeholder="Type here"
-          rows={4}
-          className="w-full bg-transparent text-white text-[13px] placeholder-[#444] outline-none resize-none"
+          rows={2}
+          className="w-full bg-transparent text-white text-md placeholder-[#444] outline-none resize-none border-b border-white/10"
         />
+
+        <div className="border-b border-white/10 mt-8"></div>
       </div>
 
       <div className="flex justify-center pt-2">
-        <button className="bg-lime-400 text-ink-950 font-medium text-sm px-10 py-3 rounded-lg hover:bg-[#a8d420] transition-colors">
+        <button className="bg-lime-400 text-ink-950 font-medium text-md px-8 py-4 rounded-lg hover:bg-lime-300 transition-colors">
           Submit
         </button>
       </div>
+
     </div>
   );
-}
+};
 
 export default ContactForm

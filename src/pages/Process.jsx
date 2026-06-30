@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
+import { NavLink } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import Logo from '../components/Logo.jsx'
@@ -48,70 +48,99 @@ const steps = [
 ]
 
 const Process = () => {
+
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }
+
   return (
+
+  <div className="max-w-8xl mx-auto px-20 max-sm:px-4">
+    <div className="border-x border-ink-600 min-h-screen">
     <>
       <PageHero
         title="Process of Starting the Project"
         subtitle="At SquareUp, we value transparency, collaboration, and delivering exceptional results."
+        image="HomeImages/Background.jpeg"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-16">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">At SquareUp</h2>
-        <p className="text-white/50 max-w-2xl text-sm leading-relaxed mb-6">
+      <div className="px-8 md:px-10 py-12 border-b border-white/10 mt-10 max-sm:px-4 max-sm:py-8 max-sm:mt-0">
+        <h2 className="text-4xl font-medium text-white mb-4 max-sm:text-3xl">At SquareUp</h2>
+        <p className="text-white/50 text-md leading-relaxed max-w-6xl mb-6">
           We follow a structured and collaborative process to ensure the successful delivery of exceptional digital
           products. Our process combines industry best practices, creative thinking, and a client-centric approach.
         </p>
-        <span className="inline-block bg-ink-800 text-white/70 text-sm px-4 py-2 rounded-md mb-12">
+        <span className="inline-block mt-5 text-white/80 text-md bg-ink-600 px-4 py-3 rounded-md max-sm:mt-2">
           Here's an overview of our typical process:
         </span>
-
-       <div className="grid md:grid-cols-2 border-t border-l border-white/10">
-  {steps.map((s) => (
-    <div key={s.n} className="border-r border-b border-white/10 p-8">
-      <div className="flex items-center gap-5 border-b border-white/10 pb-6">
-        <span className="text-[90px] md:text-[110px] font-medium leading-none text-lime-200">
-          {s.n}
-        </span>
-
-        <h3 className="text-2xl font-medium text-white/70">
-          {s.title}
-        </h3>
       </div>
 
-      <p className="mt-6 text-white/50 text-sm leading-7">
-        {s.text}
-      </p>
-    </div>
-  ))}
-</div>
+      <div className="grid md:grid-cols-2 border-t border-white/10 max-sm:grid-cols-1">
+        {steps.map((s, i) => (
+          <div
+            key={s.n}
+            className={`p-8 max-sm:p-4 max-sm:border-b max-sm:border-white/10
+              ${i % 2 === 1 ? "border-l border-white/10 max-sm:border-l-0" : ""}
+              ${i < steps.length - 2 ? "border-b border-white/10" : ""}
+            `}
+          >
+            <div className="flex gap-6 mb-8 max-sm:gap-4 max-sm:mb-5">
+              <span className="text-[110px] leading-[0.85] font-medium text-lime-200 shrink-0 max-sm:text-[72px]">
+                {s.n}
+              </span>
+
+              <div className="flex-1 flex flex-col h-[85px] pt-8 max-sm:h-auto max-sm:pt-4 max-sm:justify-center">
+                <h3 className="text-2xl font-light text-white/70 mb-3 max-sm:text-xl">
+                  {s.title}
+                </h3>
+                <div className="mt-auto border-b border-white/10 max-sm"></div>
+              </div>
+            </div>
+
+            <p className="text-white/50 font-light text-md leading-8 max-sm:text-sm max-sm:leading-7">
+              {s.text}
+            </p>
+          </div>
+        ))}
       </div>
 
-     <section className="bg-ink-900 bg-noise border-y border-white/5 py-16 text-center">
-            <div className="max-w-4xl mx-auto">
-       
-           <div className="w-14 h-14 rounded-2xl bg-lime-400 flex items-center justify-center text-ink-950 text-2xl mx-auto mb-6">
-          <Logo showText={false} 
-           iconContainerClassName="w-14 h-14 text-4xl rounded-lg"/>
-        </div>
-          <h2 className="text-2xl md:text-3xl font-medium text-white mb-3">Thank you for your Interest in SquareUp.</h2>
-          <p className="text-white/50 text-sm mb-8">
-            We would love to hear from you and discuss how we can help bring your digital ideas to life. Here are the
-            different ways you can get in touch with us.
-          </p>
-           <HashLink
-                   smooth
-                   to="/#contact-form"
-                   className="bg-lime-400 text-ink-950 font-medium text-sm px-6 py-3 rounded-md hover:bg-lime-300 transition-colors"
-                     >
-                     Start Project
-                  </HashLink>
-          </div >
+      <section className="relative overflow-hidden border-b border-white/10">
+        <img
+          src="/HomeImages/Background.jpeg"
+          alt=""
+          className="absolute inset-0 z-10"
+        style={{ background: "rgba(0,0,0,.55)" }}
+        />
+        <div
+        className="absolute inset-0 bg-black/55 z-10"
+      />
         
-        <div className="px-5 md:px-8 mt-12">
-          <ContactForm />
+        <div className="relative z-10 flex flex-col items-center text-center px-8 md:px-20 py-36 gap-8 max-sm:px-5 max-sm:py-16">
+          <Logo
+            showText={false}
+            iconContainerClassName="w-16 h-16 text-5xl rounded-xl"
+          />
+          <div className="flex flex-col gap-4">
+            <h2 className="text-3xl font-semibold text-white leading-tight max-sm:text-2xl">
+              Thank You for your Interest in SquareUp
+            </h2>
+            <p className="text-white/50 text-md max-w-4xl leading-relaxed mx-auto max-sm:text-sm">
+              We would love to hear from you and discuss how we can help bring your digital ideas to life. Here are the different ways you can get in touch with us.
+            </p>
+          </div>
+          <NavLink
+            to="/contact"
+            onClick={handleNavClick}
+            className="bg-lime-400 text-ink-950 font-medium text-sm px-6 py-3 rounded-md hover:bg-lime-300 transition-colors"
+          >
+            Start Project
+          </NavLink>
         </div>
       </section>
+      <ContactForm/>
     </>
+    </div>
+    </div>
   )
 }
-export default Process 
+export default Process

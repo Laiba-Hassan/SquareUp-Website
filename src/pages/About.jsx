@@ -35,43 +35,104 @@ const story = [
   },
 ]
 
- const About = () => {
+const About = () => {
   return (
+    <div className="max-w-8xl mx-auto px-20 max-sm:px-4">
+    <div className="border-x border-ink-600 min-h-screen">
     <>
       <PageHero
         title="About Us"
         subtitle="Welcome to SquareUp, where collaboration, expertise, and client-centricity intersect to shape the future of digital innovation."
+        image="HomeImages/Background.jpeg"
       />
 
-      <section className="max-w-6xl mx-auto px-5 md:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">About SquareUp</h2>
-          <p className="text-white/50 text-sm leading-relaxed">
-            SquareUp is a digital product agency that is passionate about crafting exceptional digital experiences.
-            We specialize in design, engineering, and project management, helping businesses thrive in the digital
-            landscape. At SquareUp, we follow a structured and collaborative process to ensure the successful
-            delivery of exceptional digital products. Our process combines industry best practices, creative
-            thinking, and a client-centric approach.
+      <section className="max-w-7xl mx-auto px-10 py-20 grid md:grid-cols-2 gap-15 items-center max-sm:px-4 max-sm:py-10 max-sm:grid-cols-1 max-sm:gap-8">
+
+        <div className="pr-8 max-sm:pr-0">
+          <h2 className="text-4xl font-medium text-white mb-6 max-sm:text-3xl">
+            About SquareUp
+          </h2>
+          <p className="text-white/70 text-md md:text-sm">
+            SquareUp is a digital product agency that is passionate about crafting
+            exceptional digital experiences. We specialize in design, engineering,
+            and project management, helping businesses thrive in the digital
+            landscape. At SquareUp, we follow a structured and collaborative process
+            to ensure the successful delivery of exceptional digital products. Our
+            process combines industry best practices, creative thinking, and a
+            client-centric approach.
           </p>
         </div>
-        <div className="aspect-square bg-ink-900 bg-noise rounded-3xl flex items-center justify-center relative overflow-hidden">
-          <div className="hero-glow absolute inset-0" />
-            <Logo showText = {false}
-            iconContainerClassName='h-[150px] w-[150px] rounded-2xl text-8xl font-medium' />
-        </div>
+
+       <div className="flex justify-end max-sm:justify-center">
+  <div className="relative w-[500px] aspect-square rounded-3xl border border-ink-700 overflow-hidden max-sm:w-full max-sm:max-w-[300px]">
+
+    <img
+      src="/HomeImages/Background.jpeg"
+      alt=""
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+
+    <div className="absolute inset-0 bg-black/55" />
+    <div className="hero-glow absolute inset-0 z-10" />
+
+   <div className="relative z-20 flex items-center justify-center w-full h-full">
+
+  <div className="relative flex items-center justify-center">
+
+    {/* Top Line */}
+    <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-px h-48 bg-lime-400/30"></div>
+
+    {/* Bottom Line */}
+    <div className="absolute top-full left-1/2 -translate-x-1/2 w-px h-48 bg-lime-400/30"></div>
+
+    {/* Left Line */}
+    <div className="absolute right-full top-1/2 -translate-y-1/2 h-px w-48 bg-lime-400/30"></div>
+
+    {/* Right Line */}
+    <div className="absolute left-full top-1/2 -translate-y-1/2 h-px w-48 bg-lime-400/30"></div>
+
+    <Logo
+      showText={false}
+      iconContainerClassName="h-[100px] w-[100px] rounded-[20px] text-7xl font-medium max-sm:h-[90px] max-sm:w-[90px] max-sm:text-4xl"
+    />
+
+  </div>
+
+</div>
+
+  </div>
+</div>
       </section>
 
-      <section className="bg-ink-900 bg-noise border-y border-white/5 py-20">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-medium text-white mb-14">Our Story</h2>
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-14">
-            {story.map((s) => (
-              <div key={s.n}>
-                <div className="flex items-center gap-5 border-b border-white/10 pb-6">
-                  <span className="text-[90px] md:text-[110px] font-medium leading-none text-lime-200">{s.n}</span>
-                  <h3 className="text-2xl font-medium text-lime-200">{s.title}</h3>
+      <section className="border-y border-ink-600 pt-20 pb-0 max-sm:pt-10 rounded-">
+        <div className="max-w-8xl mx-auto">
+          <h2 className="text-4xl font-semibold text-white mb-16 px-10 max-sm:text-3xl max-sm:mb-8 max-sm:px-4">Our Story</h2>
+
+          <div className="grid md:grid-cols-2 border-t border-ink-600 max-sm:grid-cols-1">
+            {story.map((s, i) => (
+              <div
+                key={s.n}
+                className={`p-8 max-sm:p-4 max-sm:border-b max-sm:border-ink-600
+                  ${i % 2 === 1 ? "border-l border-white/10 max-sm:border-l-0" : ""}
+                  ${i < story.length - 2 ? "border-b border-white/10" : ""}
+                `}
+              >
+                <div className="flex gap-6 mb-8 max-sm:gap-4 max-sm:mb-5 ">
+                  <span className="text-[110px] leading-[0.85] font-medium text-lime-200 shrink-0 max-sm:text-[72px]">
+                    {s.n}
+                  </span>
+
+                  <div className="flex-1 flex flex-col h-[85px] pt-8 max-sm:h-auto max-sm:pt-4 max-sm:justify-center">
+                    <h3 className="text-2xl font-light text-lime-200 mb-3 max-sm:text-xl">
+                      {s.title}
+                    </h3>
+                    <div className="mt-auto border-b border-white/10 max-sm "></div>
+                  </div>
                 </div>
-                <p className="text-white/50 text-sm leading-relaxed">{s.text}</p>
+
+                <p className="text-white/50 font-light text-md px-6 max-sm:px-0 max-sm:text-sm max-sm:leading-7">
+                  {s.text}
+                </p>
               </div>
             ))}
           </div>
@@ -80,6 +141,8 @@ const story = [
 
       <CtaBanner />
     </>
+    </div>
+    </div>
   )
 }
 
