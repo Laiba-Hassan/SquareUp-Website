@@ -22,16 +22,19 @@ const services = [
     icon: <Brush />,
     title: 'Design',
     text: "Our design team is passionate about creating stunning, user-centric designs that captivate your audience and elevate your brand. We believe that great design is not just about aesthetics; it's about creating seamless and intuitive user experiences.",
+    link: "/services#design"
   },
   {
     icon: <Puzzle />,
     title: 'Engineering',
     text: 'Our engineering team combines technical expertise with a passion for innovation to build robust and scalable digital solutions using the latest technologies and best practices tailored to your specific needs.',
+    link: "/services#engineering",
   },
   {
     icon: <BatteryCharging />,
     title: 'Project Management',
     text: 'Our experienced project management team ensures that your projects are delivered on time, within budget, and according to your specifications, with effective communication and collaboration tools throughout.',
+    link: "/services#project-management",
   },
 ]
 
@@ -207,8 +210,7 @@ const Home = () => {
               </div>
               <h3 className="text-white font-medium text-lg mb-3">{s.title}</h3>
               <p className="text-white/50 text-sm leading-relaxed mb-8">{s.text}</p>
-              <Link
-                to="/services"
+              <Link to={s.link}
                 className="mt-auto block text-center text-white text-sm bg-ink-700 border border-ink-700 py-2.5 hover:border-white/30 transition-colors rounded-md"
               >
                 Learn More

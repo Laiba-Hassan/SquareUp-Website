@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
 import Logo from '../components/Logo.jsx'
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const groups = [
   {
@@ -109,6 +111,29 @@ const groups = [
 ]
 
 const Services = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '')
+      // slight delay to ensure the DOM has rendered
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id)
+        if (el) {
+          const headerOffset = 80 // adjust to your fixed navbar height, 0 if none
+          const elementPosition = el.getBoundingClientRect().top + window.scrollY
+          window.scrollTo({
+            top: elementPosition - headerOffset,
+            behavior: 'smooth',
+          })
+        }
+      }, 100)
+      return () => clearTimeout(timer)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+    }
+  }, [location])
+
   const handleNavClick = () => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
@@ -124,7 +149,11 @@ const Services = () => {
       />
 
       {groups.map((g) => (
-        <section key={g.title} className="border-b border-ink-600">
+        <section
+    key={g.title}
+    id={g.title.toLowerCase().replace(/\s+/g, "-")}
+    className="border-b border-ink-600"
+  >
 
           <div className="px-4 md:px-10 py-8 md:py-12 border-b border-ink-600 mt-6 md:mt-10">
             <h2 className="text-2xl md:text-4xl font-medium text-white mb-4">{g.title}</h2>
