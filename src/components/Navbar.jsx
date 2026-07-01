@@ -16,7 +16,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false)
 
   const handleNavClick = () => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     setOpen(false)
   }
 

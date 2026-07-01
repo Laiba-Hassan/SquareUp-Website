@@ -116,11 +116,10 @@ const Services = () => {
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '')
-      // slight delay to ensure the DOM has rendered
       const timer = setTimeout(() => {
         const el = document.getElementById(id)
         if (el) {
-          const headerOffset = 80 // adjust to your fixed navbar height, 0 if none
+          const headerOffset = 80 
           const elementPosition = el.getBoundingClientRect().top + window.scrollY
           window.scrollTo({
             top: elementPosition - headerOffset,
